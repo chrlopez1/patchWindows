@@ -1,0 +1,26 @@
+---
+- name: Update Windows from local repository
+hosts: windows
+gather_facts: yes
+tasks:
+- name: Configure WSUS server
+win_wsus_server:
+wsus_server: #input local wsus server like this --> http://localhost:8530
+state: present
+- name: Import updates from local repository
+win_updates:
+category_names:
+- SecurityUpdates
+- CriticalUpdates
+update_source: wsus
+state: searched
+- name: Install updates from local repository
+win_updates:
+category_names:
+- SecurityUpdates
+- CriticalUpdates
+update_source: wsus
+state: installed
+- name: Reboot if required
+win_reboot:
+when: win_updates_reboot_required
