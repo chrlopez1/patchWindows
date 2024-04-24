@@ -1,20 +1,20 @@
 ---
-name: Update Windows
-hosts: all
-gather_facts: yes
-tasks:
-name: Check for updates
-win_updates:
-category_names:
-- SecurityUpdates
-- CriticalUpdates
-state: searched
-name: Install updates
-win_updates:
-category_names:
-- SecurityUpdates
-- CriticalUpdates
-state: installed
-name: Reboot if required
-win_reboot:
-when: win_updates_reboot_required
+- name: Update Windows
+  hosts: all
+  gather_facts: yes
+  tasks:
+- name: Check for updates
+  win_updates:
+  category_names:
+  - SecurityUpdates
+  - CriticalUpdates
+  state: searched
+- name: Install updates
+  win_updates:
+  category_names:
+  - SecurityUpdates
+  - CriticalUpdates
+  state: installed
+- name: Reboot if required
+  win_reboot:
+  when: win_updates_reboot_required
