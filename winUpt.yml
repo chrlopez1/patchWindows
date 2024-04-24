@@ -5,16 +5,16 @@
   tasks:
   - name: Check for updates
     win_updates:
-    category_names:
-      - SecurityUpdates
-      - CriticalUpdates
+      category_names:
+        - SecurityUpdates
+        - CriticalUpdates
     state: searched
   - name: Install updates
     win_updates:
-    category_names:
-      - SecurityUpdates
-      - CriticalUpdates
+      category_names:
+        - SecurityUpdates
+        - CriticalUpdates
     state: installed
   - name: Reboot if required
     win_reboot:
-    when: win_updates_reboot_required
+      when: win_updates_reboot_required
